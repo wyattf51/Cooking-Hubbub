@@ -15,13 +15,13 @@ export default class Play {
         this.selectedToppings = new Set();
     }
     create() {
-        this.player = this.physics.add.sprite(200, 200, "sprite");
+        this.player = this.physics.add.sprite(200, 270, "sprite");
         this.player.setScale(1)
 
         this.toppings = this.physics.add.group();
 
         for (let i = 0; i < toppingOptions.length; i++) {
-            const topping = this.toppings.create(150*i+50, 150, "sprite_zero")
+            const topping = this.toppings.create(150*i+50, 201, "sprite_zero")
             topping.setScale(1)
             topping.setData("type", toppingOptions[i]);
         }
