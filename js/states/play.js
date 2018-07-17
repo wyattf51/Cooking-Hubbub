@@ -24,7 +24,7 @@ export default class Play {
         G.fillStyle(0xeaeaea);
         G.fillRect(0, 0, 700, 500);
 
-        this.add.text(260, 10, "Patty: ", {
+        this.add.text(20, 10, "Patty: ", {
             color: "#0c0221",
             fontFamily: "Helcetica"
         })
@@ -32,7 +32,7 @@ export default class Play {
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
 
-        PattyText = this.add.text(300, 10, this.selectedToppings.get("Patty"), {
+        PattyText = this.add.text(60, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
