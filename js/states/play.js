@@ -1,30 +1,41 @@
-const toppingOptions = ["bacon", "canadian bacon", "raw bacon"]
-const playerSpeed = 100;
+const toppingOptions = ["Patty", "Lettuce", "Tomato"]
+const playerSpeed = 200;
 
 
 export default class Play {
     preload() {
         this.load.image("sprite", "./img/sprite.jpg")
         this.load.image("sprite_zero", "./img/sprite_zero.png")
+        this.load.image("stove", "./img/Stove.png")
     }
     init() {
         this.player = undefined;
         this.toppings = undefined;
+        this.trash = undefined;
         this.keys = undefined;
+        this.tIndicators = undefined;
 
         this.selectedToppings = new Set();
     }
     create() {
-        this.player = this.physics.add.sprite(200, 270, "sprite");
+        this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
 
         this.toppings = this.physics.add.group();
+
+        this.tIndicators = this.physics.add.group();
 
         for (let i = 0; i < toppingOptions.length; i++) {
             const topping = this.toppings.create(150*i+50, 201, "sprite_zero")
             topping.setScale(1)
             topping.setData("type", toppingOptions[i]);
         }
+
+
+        //this.add.image(250, 201, "stove").setScale(.2)
+
+        this.trash = this.physics.add.sprite(450, 201, "sprite_zero");
+
 
         this.keys = this.input.keyboard.addKeys({
             Left: Phaser.Input.Keyboard.KeyCodes.LEFT,      
@@ -38,6 +49,13 @@ export default class Play {
             if (this.keys.SPACE.isDown && !this.selectedToppings.has(toppingType)) {
                 console.log(`Added topping ${toppingType}`)
                 this.selectedToppings.add(toppingType);
+            }
+        })
+
+        this.physics.overlap(this.player, this.trash, (player, trash) => {
+            if (this.keys.SPACE.isDown) {
+                this.selectedToppings.clear()
+                console.log("Cleared Toppings")
             }
         })
 

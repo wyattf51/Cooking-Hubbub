@@ -5,7 +5,7 @@ console.log("GAME STARTING");
 
 const game  = new Phaser.Game({
     height: 400,
-    width: 400,
+    width: 500,
     physics: {
         default: "arcade",
         debug: true
