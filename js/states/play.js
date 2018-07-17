@@ -32,7 +32,7 @@ export default class Play {
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
 
-        PattyText = this.add.text(300, 10, Patty.toString(), {
+        PattyText = this.add.text(300, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
