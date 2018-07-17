@@ -4,8 +4,8 @@ import Play from "./states/play.js";
 console.log("GAME STARTING");
 
 const game  = new Phaser.Game({
-    height: 400,
-    width: 500,
+    height: 500,
+    width: 700,
     physics: {
         default: "arcade",
         debug: true

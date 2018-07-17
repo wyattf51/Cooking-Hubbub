@@ -13,9 +13,9 @@ export default class Play {
         this.toppings = undefined;
         this.trash = undefined;
         this.keys = undefined;
-        this.tIndicators = undefined;
 
-        this.selectedToppings = new Set();
+        this.selectedToppings = new Map();
+        this.toppingSelectable = true;
     }
     create() {
         this.player = this.physics.add.sprite(250, 270, "sprite");
@@ -29,11 +29,8 @@ export default class Play {
             const topping = this.toppings.create(150*i+50, 201, "sprite_zero")
             topping.setScale(1)
             topping.setData("type", toppingOptions[i]);
-            const tIndicators = this.tIndicators.create(150*i+50, 150, "sprite_zero")
         }
 
-
-        this.add.image(200, 180, "stove").setScale(1)
 
         this.trash = this.physics.add.sprite(450, 201, "sprite_zero");
 
@@ -47,9 +44,23 @@ export default class Play {
     update() {
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
-            if (this.keys.SPACE.isDown && !this.selectedToppings.has(toppingType)) {
-                console.log(`Added topping ${toppingType}`)
-                this.selectedToppings.add(toppingType);
+            if (this.keys.SPACE.isDown && this.toppingSelectable) {
+                this.toppingSelectable = false;
+
+                if (this.selectedToppings.has(toppingType)) {
+                    this.selectedToppings.set(toppingType, this.selectedToppings.get(toppingType)+1);
+                } else {
+                    this.selectedToppings.set(toppingType, 1)
+                }
+
+                console.log(`Added ${toppingType}, now at ${this.selectedToppings.get(toppingType)}`)
+
+                this.time.addEvent({
+                    delay: 250,
+                    callback: () => {
+                        this.toppingSelectable = true;
+                    }
+                })
             }
         })
 
