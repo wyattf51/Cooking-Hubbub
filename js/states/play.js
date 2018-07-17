@@ -1,6 +1,8 @@
 const toppingOptions = ["Patty", "Lettuce", "Tomato"]
 const playerSpeed = 200;
-
+let PattyText;
+let LettuceText;
+let TomatoText;
 
 export default class Play {
     preload() {
@@ -18,9 +20,22 @@ export default class Play {
         this.toppingSelectable = true;
     }
     create() {
+        const G = this.add.graphics();
+        G.fillStyle(0xeaeaea);
+        G.fillRect(0, 0, 700, 500);
+
+        this.add.text(260, 10, "Patty: ", {
+            color: "#0c0221",
+            fontFamily: "Helcetica"
+        })
+
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
 
+        PattyText = this.add.text(300, 10, Patty.toString(), {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+          });
         this.toppings = this.physics.add.group();
 
         this.tIndicators = this.physics.add.group();
@@ -42,6 +57,8 @@ export default class Play {
           });
     }
     update() {
+        PattyText.setText(((this.selectedToppings.get("Patty") || 0).toString()));
+    
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
             if (this.keys.SPACE.isDown && this.toppingSelectable) {
