@@ -29,10 +29,11 @@ export default class Play {
             const topping = this.toppings.create(150*i+50, 201, "sprite_zero")
             topping.setScale(1)
             topping.setData("type", toppingOptions[i]);
+            const tIndicators = this.tIndicators.create(150*i+50, 150, "sprite_zero")
         }
 
 
-        //this.add.image(250, 201, "stove").setScale(.2)
+        this.add.image(200, 180, "stove").setScale(1)
 
         this.trash = this.physics.add.sprite(450, 201, "sprite_zero");
 
