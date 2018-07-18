@@ -56,6 +56,17 @@ export default class Play {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
+
+        LettuceText = this.add.text(222, 10, this.selectedToppings.get("Lettuce"), {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+
+        TomatoText = this.add.text(380, 10, this.selectedToppings.get("Tomato"), {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+          });
+        
         this.toppings = this.physics.add.group();
 
         this.tIndicators = this.physics.add.group();
@@ -79,7 +90,14 @@ export default class Play {
     update() {
         PattyText.setText(((this.selectedToppings.get("Patty") || 0).toString()));
 
+        
+        LettuceText.setText(((this.selectedToppings.get("Lettuce") || 0).toString()));
+
+        TomatoText.setText(((this.selectedToppings.get("Tomato") || 0).toString()));
+
+
         pattyOrderText.setText(this.currentOrder.get("Patty"))
+
     
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
