@@ -1,9 +1,11 @@
+import { randomInRange } from "../util.js";
+
 const toppingOptions = ["Patty", "Lettuce", "Tomato"]
 const playerSpeed = 300;
 let PattyText;
 let LettuceText;
 let TomatoText;
-
+let pattyOrderText;
 export default class Play {
     preload() {
         this.load.image("sprite", "./img/sprite.jpg")
@@ -18,8 +20,18 @@ export default class Play {
         this.platforms = undefined;
 
         this.selectedToppings = new Map();
+        this.currentOrder = new Map();
         this.toppingSelectable = true;
-    }
+
+        this.genOrder();
+    };
+    
+    genOrder() {
+        this.currentOrder.set("Patty", randomInRange(0, 5))
+        this.currentOrder.set("Lettuce", randomInRange(0, 5))
+        this.currentOrder.set("Tomato", randomInRange(0, 5))    
+    }   
+
     create() {
         const G = this.add.graphics();
         G.fillStyle(0xeaeaea);
@@ -29,6 +41,8 @@ export default class Play {
             color: "#0c0221",
             fontFamily: "Helcetica"
         })
+
+        pattyOrderText = this.add.text(20, 30, "HI")
 
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
@@ -61,6 +75,8 @@ export default class Play {
     }
     update() {
         PattyText.setText(((this.selectedToppings.get("Patty") || 0).toString()));
+
+        pattyOrderText.setText(this.currentOrder.get("Patty"))
     
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
