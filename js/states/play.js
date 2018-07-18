@@ -24,12 +24,17 @@ export default class Play {
         G.fillStyle(0xeaeaea);
         G.fillRect(0, 0, 700, 500);
 
-        this.add.text(260, 10, "Patty: ", {
+        this.add.text(20, 10, "Patty: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
 
-        this.add.text(360, 10, "Lettuce: ", {
+        this.add.text(160, 10, "Lettuce: ", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+
+        this.add.text(317, 10, "Tomato: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
@@ -37,15 +42,20 @@ export default class Play {
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
 
-        PattyText = this.add.text(300, 10, this.selectedToppings.get("Patty"), {
+        PattyText = this.add.text(67, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
 
-        LettuceText = this.add.text(380, 10, this.selectedToppings.get("Lettuce"), {
+        LettuceText = this.add.text(222, 10, this.selectedToppings.get("Lettuce"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
+
+        TomatoText = this.add.text(380, 10, this.selectedToppings.get("Tomato"), {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+          });
         
         this.toppings = this.physics.add.group();
 
@@ -71,6 +81,8 @@ export default class Play {
         PattyText.setText(((this.selectedToppings.get("Patty") || 0).toString()));
         
         LettuceText.setText(((this.selectedToppings.get("Lettuce") || 0).toString()));
+
+        TomatoText.setText(((this.selectedToppings.get("Tomato") || 0).toString()));
     
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
