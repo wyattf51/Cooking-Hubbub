@@ -1,5 +1,5 @@
 const toppingOptions = ["Patty", "Lettuce", "Tomato"]
-const playerSpeed = 200;
+const playerSpeed = 300;
 let PattyText;
 let LettuceText;
 let TomatoText;
@@ -15,6 +15,7 @@ export default class Play {
         this.toppings = undefined;
         this.trash = undefined;
         this.keys = undefined;
+        this.platforms = undefined;
 
         this.selectedToppings = new Map();
         this.toppingSelectable = true;
@@ -31,6 +32,8 @@ export default class Play {
 
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
+
+        this.player.setCollideWorldBounds(true);
 
         PattyText = this.add.text(60, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
