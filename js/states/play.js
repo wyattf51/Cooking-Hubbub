@@ -42,23 +42,23 @@ export default class Play {
             fontFamily: "Helvetica"
         })
 
-        this.add.text(160, 10, "Lettuce: ", {
+        pattyOrderText = this.add.text(670, 10, "HI", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
-
-        this.add.text(317, 10, "Tomato: ", {
-            color: "#0c0221",
-            fontFamily: "Helvetica"
-        })
-
-        pattyOrderText = this.add.text(20, 30, "HI")
 
         this.player = this.physics.add.sprite(250, 270, "sprite");
         this.player.setScale(1)
+<<<<<<< HEAD
         this.player.setCollideWorldBounds(true);
 
         PattyText = this.add.text(67, 10, this.selectedToppings.get("Patty"), {
+=======
+
+        this.player.setCollideWorldBounds(true);
+
+        PattyText = this.add.text(65, 10, this.selectedToppings.get("Patty"), {
+>>>>>>> 10c01ee8e006b100b7fee425caa31a81e687de4f
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
