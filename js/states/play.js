@@ -11,6 +11,7 @@ export default class Play {
         this.load.image("sprite", "./img/sprite.jpg")
         this.load.image("sprite_zero", "./img/sprite_zero.png")
         this.load.image("stove", "./img/Stove.png")
+        this.load.image("player", "./img/Player.png")
     }
     init() {
         this.player = undefined;
@@ -57,8 +58,8 @@ export default class Play {
             fontFamily: "Helvetica"
         })
 
-        this.player = this.physics.add.sprite(250, 270, "sprite");
-        this.player.setScale(1)
+        this.player = this.physics.add.sprite(250, 270, "player");
+        this.player.setScale(1);
 
         this.player.setCollideWorldBounds(true);
 
