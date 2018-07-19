@@ -62,17 +62,17 @@ export default class Play {
 
         this.player.setCollideWorldBounds(true);
 
-        PattyText = this.add.text(65, 10, this.selectedToppings.get("Patty"), {
+        PattyText = this.add.text(75, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
 
-        LettuceText = this.add.text(220, 10, this.selectedToppings.get("Lettuce"), {
+        LettuceText = this.add.text(210, 10, this.selectedToppings.get("Lettuce"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
 
-        TomatoText = this.add.text(380, 10, this.selectedToppings.get("Tomato"), {
+        TomatoText = this.add.text(360, 10, this.selectedToppings.get("Tomato"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
