@@ -124,9 +124,6 @@ export default class Play {
         sodaOrderText.setText(this.currentOrder.get("Lettuce"))
 
         friesOrderText.setText(this.currentOrder.get("Tomato"))
-
-
-
     
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
