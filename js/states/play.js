@@ -37,17 +37,17 @@ export default class Play {
         G.fillStyle(0xeaeaea);
         G.fillRect(0, 0, 700, 500);
 
-        this.add.text(20, 10, "Patty: ", {
+        this.add.text(20, 10, "Burger: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
 
-        this.add.text(160, 10, "Lettuce: ", {
+        this.add.text(160, 10, "Soda: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
 
-        this.add.text(320, 10, "Tomato: ", {
+        this.add.text(320, 10, "Fries: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
