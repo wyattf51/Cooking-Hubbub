@@ -6,6 +6,8 @@ let PattyText;
 let LettuceText;
 let TomatoText;
 let pattyOrderText;
+let sodaOrderText;
+let friesOrderText;
 export default class Play {
     preload() {
         this.load.image("sprite", "./img/sprite.jpg")
@@ -54,6 +56,16 @@ export default class Play {
         })
 
         pattyOrderText = this.add.text(670, 10, "HI", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+
+        sodaOrderText = this.add.text(670, 30, "Bye", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+
+        friesOrderText = this.add.text(670, 50, "Rawr", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
@@ -108,6 +120,12 @@ export default class Play {
 
 
         pattyOrderText.setText(this.currentOrder.get("Patty"))
+
+        sodaOrderText.setText(this.currentOrder.get("Lettuce"))
+
+        friesOrderText.setText(this.currentOrder.get("Tomato"))
+
+
 
     
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
