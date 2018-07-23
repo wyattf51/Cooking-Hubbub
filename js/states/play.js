@@ -12,7 +12,6 @@ export default class Play {
     preload() {
         this.load.image("sprite", "./img/sprite.jpg")
         this.load.image("sprite_zero", "./img/sprite_zero.png")
-        this.load.image("stove", "./img/Stove.png")
         this.load.image("player", "./img/Player.png")
     }
     init() {
