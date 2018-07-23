@@ -70,11 +70,6 @@ export default class Play {
             fontFamily: "Helvetica"
         })
 
-        this.player = this.physics.add.sprite(250, 270, "player");
-        this.player.setScale(1);
-
-        this.player.setCollideWorldBounds(true);
-
         PattyText = this.add.text(75, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
@@ -102,6 +97,11 @@ export default class Play {
 
 
         this.trash = this.physics.add.sprite(450, 201, "sprite_zero");
+
+        this.player = this.physics.add.sprite(250, 270, "player");
+        this.player.setScale(1);
+
+        this.player.setCollideWorldBounds(true);
 
 
         this.keys = this.input.keyboard.addKeys({
@@ -139,7 +139,7 @@ export default class Play {
                 console.log(`Added ${toppingType}, now at ${this.selectedToppings.get(toppingType)}`)
 
                 this.time.addEvent({
-                    delay: 250,
+                    delay: 1000,
                     callback: () => {
                         this.toppingSelectable = true;
                     }
