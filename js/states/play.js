@@ -8,6 +8,9 @@ let TomatoText;
 let pattyOrderText;
 let sodaOrderText;
 let friesOrderText;
+let scoreText;
+let score;
+
 export default class Play {
     preload() {
         this.load.image("sprite", "./img/sprite.jpg")
@@ -24,6 +27,8 @@ export default class Play {
         this.selectedToppings = new Map();
         this.currentOrder = new Map();
         this.toppingSelectable = true;
+
+        score = 0;
 
         this.genOrder();
     };
@@ -83,6 +88,11 @@ export default class Play {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
+
+          scoreText = this.add.text(480, 10, `Score: ${score}`, {
+              color: "#0c0221",
+              fontFamily: "Helvetica"
+          })
         
         this.toppings = this.physics.add.group();
 
@@ -117,6 +127,8 @@ export default class Play {
 
         TomatoText.setText(((this.selectedToppings.get("Tomato") || 0).toString()));
 
+        scoreText.setText(`Score: ${score}`)
+
 
         pattyOrderText.setText(this.currentOrder.get("Patty"))
 
@@ -138,7 +150,7 @@ export default class Play {
                 console.log(`Added ${toppingType}, now at ${this.selectedToppings.get(toppingType)}`)
 
                 this.time.addEvent({
-                    delay: 1000,
+                    delay: 300,
                     callback: () => {
                         this.toppingSelectable = true;
                     }
@@ -159,6 +171,16 @@ export default class Play {
             this.player.setVelocityX(playerSpeed)
         } else {
             this.player.setVelocityX(0)
+        }
+
+        const patty = this.selectedToppings.get("Patty") === this.currentOrder.get("Patty");
+        const lettuce = this.selectedToppings.get("Lettuce") === this.currentOrder.get("Lettuce");
+        const tomato = this.selectedToppings.get("Tomato") === this.currentOrder.get("Tomato");
+
+        if (patty && lettuce && tomato) {
+            score++;
+            this.genOrder();
+            this.selectedToppings.clear();
         }
     }
 }
