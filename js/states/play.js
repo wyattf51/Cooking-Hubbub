@@ -34,9 +34,9 @@ export default class Play {
     };
     
     genOrder() {
-        this.currentOrder.set("Patty", randomInRange(0, 5))
-        this.currentOrder.set("Lettuce", randomInRange(0, 5))
-        this.currentOrder.set("Tomato", randomInRange(0, 5))    
+        this.currentOrder.set("Patty", randomInRange(0, 3))
+        this.currentOrder.set("Lettuce", randomInRange(0, 3))
+        this.currentOrder.set("Tomato", randomInRange(0, 3))    
     }   
 
     create() {
@@ -179,6 +179,7 @@ export default class Play {
 
         if (patty && lettuce && tomato) {
             score++;
+            this.sound.play("")
             this.genOrder();
             this.selectedToppings.clear();
         }
