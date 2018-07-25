@@ -18,8 +18,9 @@ export default class Play {
         this.load.image("sprite_zero", "./img/sprite_zero.png")
         this.load.image("player", "./img/Player.png")
         this.load.image("burger", "./img/burger.png")
-        this.load.image("fries", "fries.png")
-        this.load.image("soda", "soda.png")
+        this.load.image("fries", "./img/fries.png")
+        this.load.image("soda", "./img/soda.png")
+        this.load.image("", "")
 
         this.load.audio("bgm", "./audio/bgm.mp3")
     }
@@ -77,11 +78,11 @@ export default class Play {
         })
        
         //adds text for number of fries
-        this.add.text(320, 10, "Fries: ", {
+        this.add.text(20, 50, "Fries: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
-        TomatoText = this.add.text(360, 10, this.selectedToppings.get("Tomato"), {
+        TomatoText = this.add.text(70, 50, this.selectedToppings.get("Tomato"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
