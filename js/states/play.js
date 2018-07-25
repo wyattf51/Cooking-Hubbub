@@ -12,10 +12,13 @@ let scoreText;
 let score;
 
 export default class Play {
+
     preload() {
         this.load.image("sprite", "./img/sprite.jpg")
         this.load.image("sprite_zero", "./img/sprite_zero.png")
         this.load.image("player", "./img/Player.png")
+
+        this.load.audio("bgm", "./audio/bgm.mp3")
     }
     init() {
         this.player = undefined;
@@ -27,6 +30,7 @@ export default class Play {
         this.selectedToppings = new Map();
         this.currentOrder = new Map();
         this.toppingSelectable = true;
+        this.musicPlaying = false;
 
         score = 0;
 
@@ -40,59 +44,63 @@ export default class Play {
     }   
 
     create() {
+        //plays sound and loops it
+        this.sound.play("bgm", {
+            loop: true,
+        })
+        
         const G = this.add.graphics();
         G.fillStyle(0xeaeaea);
         G.fillRect(0, 0, 700, 500);
 
+        //adds the text for burger count
         this.add.text(20, 10, "Burger: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
-
-        this.add.text(160, 10, "Soda: ", {
-            color: "#0c0221",
-            fontFamily: "Helvetica"
-        })
-
-        this.add.text(320, 10, "Fries: ", {
-            color: "#0c0221",
-            fontFamily: "Helvetica"
-        })
-
-        pattyOrderText = this.add.text(670, 10, "HI", {
-            color: "#0c0221",
-            fontFamily: "Helvetica"
-        })
-
-        sodaOrderText = this.add.text(670, 30, "Bye", {
-            color: "#0c0221",
-            fontFamily: "Helvetica"
-        })
-
-        friesOrderText = this.add.text(670, 50, "Rawr", {
-            color: "#0c0221",
-            fontFamily: "Helvetica"
-        })
-
         PattyText = this.add.text(75, 10, this.selectedToppings.get("Patty"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
 
+        //adds the text for soda count
+        this.add.text(160, 10, "Soda: ", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
         LettuceText = this.add.text(210, 10, this.selectedToppings.get("Lettuce"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
-
+       
+        //adds text for number of fries
+        this.add.text(320, 10, "Fries: ", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
         TomatoText = this.add.text(360, 10, this.selectedToppings.get("Tomato"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
           });
 
-          scoreText = this.add.text(480, 10, `Score: ${score}`, {
-              color: "#0c0221",
-              fontFamily: "Helvetica"
-          })
+        //Order generation
+        pattyOrderText = this.add.text(670, 10, "HI", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+        sodaOrderText = this.add.text(670, 30, "Bye", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+        friesOrderText = this.add.text(670, 50, "Rawr", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+
+        scoreText = this.add.text(480, 10, `Score: ${score}`, {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
         
         this.toppings = this.physics.add.group();
 
@@ -104,9 +112,10 @@ export default class Play {
             topping.setData("type", toppingOptions[i]);
         }
 
-
+        //trash can sprite creation
         this.trash = this.physics.add.sprite(450, 201, "sprite_zero");
 
+        //Player stuff
         this.player = this.physics.add.sprite(250, 270, "player");
         this.player.setScale(1);
 
@@ -120,6 +129,7 @@ export default class Play {
           });
     }
     update() {
+
         PattyText.setText(((this.selectedToppings.get("Patty") || 0).toString()));
 
         
@@ -136,6 +146,7 @@ export default class Play {
 
         friesOrderText.setText(this.currentOrder.get("Tomato"))
     
+        //mechanism for increasing the number of an item
         this.physics.overlap(this.player, this.toppings, (player, topping) => {
             const toppingType = topping.getData("type");
             if (this.keys.SPACE.isDown && this.toppingSelectable) {
@@ -158,6 +169,7 @@ export default class Play {
             }
         })
 
+        //trash can mechanism
         this.physics.overlap(this.player, this.trash, (player, trash) => {
             if (this.keys.SPACE.isDown) {
                 this.selectedToppings.clear()
@@ -165,6 +177,7 @@ export default class Play {
             }
         })
 
+        //player movement
         if (this.keys.Left.isDown) {
             this.player.setVelocityX(-playerSpeed)
         } else if (this.keys.Right.isDown) {
