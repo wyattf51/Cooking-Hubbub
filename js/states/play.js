@@ -17,6 +17,9 @@ export default class Play {
         this.load.image("sprite", "./img/sprite.jpg")
         this.load.image("sprite_zero", "./img/sprite_zero.png")
         this.load.image("player", "./img/Player.png")
+        this.load.image("burger", "./img/burger.png")
+        this.load.image("fries", "fries.png")
+        this.load.image("soda", "soda.png")
 
         this.load.audio("bgm", "./audio/bgm.mp3")
     }
@@ -46,7 +49,7 @@ export default class Play {
     create() {
         //plays sound and loops it
         this.sound.play("bgm", {
-            loop: true,
+            loop: true
         })
         
         const G = this.add.graphics();
@@ -64,11 +67,11 @@ export default class Play {
           });
 
         //adds the text for soda count
-        this.add.text(160, 10, "Soda: ", {
+        this.add.text(20, 30, "Soda: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
-        LettuceText = this.add.text(210, 10, this.selectedToppings.get("Lettuce"), {
+        LettuceText = this.add.text(70, 30, this.selectedToppings.get("Lettuce"), {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
@@ -107,13 +110,13 @@ export default class Play {
         this.tIndicators = this.physics.add.group();
 
         for (let i = 0; i < toppingOptions.length; i++) {
-            const topping = this.toppings.create(150*i+50, 201, "sprite_zero")
+            const topping = this.toppings.create(200*i+50, 201, "burger")
             topping.setScale(1)
             topping.setData("type", toppingOptions[i]);
         }
 
         //trash can sprite creation
-        this.trash = this.physics.add.sprite(450, 201, "sprite_zero");
+        this.trash = this.physics.add.sprite(620, 201, "sprite_zero");
 
         //Player stuff
         this.player = this.physics.add.sprite(250, 270, "player");
