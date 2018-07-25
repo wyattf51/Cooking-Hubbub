@@ -17,10 +17,10 @@ export default class Play {
         this.load.image("sprite", "./img/sprite.jpg")
         this.load.image("sprite_zero", "./img/sprite_zero.png")
         this.load.image("player", "./img/Player.png")
-        this.load.image("burger", "./img/burger.png")
-        this.load.image("fries", "./img/fries.png")
-        this.load.image("soda", "./img/soda.png")
-        this.load.image("", "")
+        this.load.image("Patty", "./img/burger.png")
+        this.load.image("Tomato", "./img/fries.png")
+        this.load.image("Lettuce", "./img/soda.png")
+        this.load.image("trash", "./img/trash.png")
 
         this.load.audio("bgm", "./audio/bgm.mp3")
     }
@@ -111,16 +111,16 @@ export default class Play {
         this.tIndicators = this.physics.add.group();
 
         for (let i = 0; i < toppingOptions.length; i++) {
-            const topping = this.toppings.create(200*i+50, 201, "burger")
+            const topping = this.toppings.create(200*i+50, 201, toppingOptions[i])
             topping.setScale(1)
             topping.setData("type", toppingOptions[i]);
         }
 
         //trash can sprite creation
-        this.trash = this.physics.add.sprite(620, 201, "sprite_zero");
+        this.trash = this.physics.add.sprite(620, 201, "trash").setScale(4);
 
         //Player stuff
-        this.player = this.physics.add.sprite(250, 270, "player");
+        this.player = this.physics.add.sprite(250, 280, "player");
         this.player.setScale(1);
 
         this.player.setCollideWorldBounds(true);
