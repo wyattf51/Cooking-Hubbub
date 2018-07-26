@@ -40,7 +40,7 @@ export default class Play {
         this.musicPlaying = false;
 
         score = 0;
-        timer = 0.5;
+        timer = 20;
 
         this.genOrder();
     };
