@@ -1,7 +1,7 @@
 import { randomInRange } from "../util.js";
 
 const toppingOptions = ["Patty", "Lettuce", "Tomato"]
-const playerSpeed = 300;
+const playerSpeed = 500;
 let PattyText;
 let LettuceText;
 let TomatoText;
@@ -10,6 +10,7 @@ let sodaOrderText;
 let friesOrderText;
 let scoreText;
 let score;
+let timer;
 
 export default class Play {
 
@@ -37,6 +38,7 @@ export default class Play {
         this.musicPlaying = false;
 
         score = 0;
+        timer = 1;
 
         this.genOrder();
     };
@@ -88,11 +90,23 @@ export default class Play {
           });
 
         //Order generation
+        this.add.text(570, 10, "# of Burgers: ", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
         pattyOrderText = this.add.text(670, 10, "HI", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
+        this.add.text(580, 30, "# of Sodas: ", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
         sodaOrderText = this.add.text(670, 30, "Bye", {
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+        this.add.text(590, 50, "# of Fries: ", {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
@@ -101,7 +115,7 @@ export default class Play {
             fontFamily: "Helvetica"
         })
 
-        scoreText = this.add.text(480, 10, `Score: ${score}`, {
+        scoreText = this.add.text(300, 10, `Score: ${score}`, {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
@@ -122,15 +136,32 @@ export default class Play {
         //Player stuff
         this.player = this.physics.add.sprite(250, 280, "player");
         this.player.setScale(1);
-
         this.player.setCollideWorldBounds(true);
-
 
         this.keys = this.input.keyboard.addKeys({
             Left: Phaser.Input.Keyboard.KeyCodes.LEFT,      
             Right: Phaser.Input.Keyboard.KeyCodes.RIGHT,      
             SPACE: Phaser.Input.Keyboard.KeyCodes.SPACE
           });
+
+        //timer
+        const tick = () => {
+            timer -= .1
+            if(timer <= 0){
+                this.scene.start("gameOver")
+            }else {
+                this.time.addEvent({
+                    delay: 100,
+                    callback: tick
+                })
+            }
+            
+            console.log(timer)
+        }
+        this.time.addEvent({
+            delay: 100,
+            callback: tick
+        })
     }
     update() {
 
@@ -165,7 +196,7 @@ export default class Play {
                 console.log(`Added ${toppingType}, now at ${this.selectedToppings.get(toppingType)}`)
 
                 this.time.addEvent({
-                    delay: 300,
+                    delay: 200,
                     callback: () => {
                         this.toppingSelectable = true;
                     }
@@ -196,7 +227,7 @@ export default class Play {
 
         if (patty && lettuce && tomato) {
             score++;
-            this.sound.play("")
+            //this.sound.play("")
             this.genOrder();
             this.selectedToppings.clear();
         }
