@@ -23,6 +23,7 @@ export default class Play {
         this.load.image("Tomato", "./img/fries.png")
         this.load.image("Lettuce", "./img/soda.png")
         this.load.image("trash", "./img/trash.png")
+        this.load.image("BK", "./img/Background.png")
 
         this.load.audio("bgm", "./audio/bgm.mp3")
         this.load.audio("score", "./audio/score.mp3")
@@ -40,7 +41,7 @@ export default class Play {
         this.musicPlaying = false;
 
         score = 0;
-        timer = 0.5;
+        timer = 20;
 
         this.genOrder();
     };
@@ -52,73 +53,71 @@ export default class Play {
     }   
 
     create() {
-        const G = this.add.graphics();
-        G.fillStyle(0xeaeaea);
-        G.fillRect(0, 0, 700, 500);
-
+        this.add.image(350, 250, "BK")
+       
         //adds the text for burger count
         this.add.text(20, 10, "Burger: ", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         PattyText = this.add.text(75, 10, this.selectedToppings.get("Patty"), {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
           });
 
         //adds the text for soda count
         this.add.text(20, 30, "Soda: ", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         LettuceText = this.add.text(70, 30, this.selectedToppings.get("Lettuce"), {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
        
         //adds text for number of fries
         this.add.text(20, 50, "Fries: ", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         TomatoText = this.add.text(70, 50, this.selectedToppings.get("Tomato"), {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
           });
 
         //Order generation
         this.add.text(570, 10, "# of Burgers: ", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         pattyOrderText = this.add.text(670, 10, "HI", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         this.add.text(580, 30, "# of Sodas: ", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         sodaOrderText = this.add.text(670, 30, "Bye", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         this.add.text(590, 50, "# of Fries: ", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         friesOrderText = this.add.text(670, 50, "Rawr", {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
 
         timerText = this.add.text(300, 10, `Time: ${Math.floor(timer)}`,{
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
 
         scoreText = this.add.text(300, 30, `Score: ${score}`, {
-            color: "#0c0221",
+            //color: "#0c0221",
             fontFamily: "Helvetica"
         })
         

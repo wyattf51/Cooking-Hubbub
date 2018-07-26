@@ -4,9 +4,13 @@ export default class GameOver{
     }
     preload() {
         this.load.image("gameover", "./img/GameOver.png")
+        
+        this.load.audio("Dead", "./audio/laugh.wav")
     }
     create() {
-        this.sound.pauseAll()
+        this.sound.pauseAll({
+            delay:300,
+        })
         this.scene.stop("Play");
         
         this.keys = this.input.keyboard.addKeys({
@@ -20,6 +24,8 @@ export default class GameOver{
         const Gtext = this.add.text(165, 350, "Press Enter to try again",{
             fontSize: 26
         })
+
+        this.sound.play("Dead")
     }
     update() {
         if (this.keys.Enter.isDown) {

@@ -58,6 +58,11 @@ export default class Title {
             fontFamily: "Helvetica",
             fontSize: 26,
         })
+        this.add.text(0, 480, "Background by: Lili", {
+            color: "#0c0221",
+            fontFamily: "Helvetica",
+            fontSize: 5,
+        })
     }
     update() {
         if (this.keys.Space.isDown) {
