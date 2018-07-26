@@ -40,7 +40,7 @@ export default class Play {
         this.musicPlaying = false;
 
         score = 0;
-        timer = 20;
+        timer = 0.5;
 
         this.genOrder();
     };
@@ -52,11 +52,6 @@ export default class Play {
     }   
 
     create() {
-        //plays sound and loops it
-        this.sound.play("bgm", {
-            loop: true
-        })
-        
         const G = this.add.graphics();
         G.fillStyle(0xeaeaea);
         G.fillRect(0, 0, 700, 500);

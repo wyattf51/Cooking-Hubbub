@@ -6,6 +6,7 @@ export default class GameOver{
         this.load.image("gameover", "./img/GameOver.png")
     }
     create() {
+        this.sound.pauseAll()
         this.scene.stop("Play");
         
         this.keys = this.input.keyboard.addKeys({
@@ -21,8 +22,8 @@ export default class GameOver{
         })
     }
     update() {
-        if (this.keys.Space.isDown || this.keys.Enter.isDown) {
-            this.scene.start("Title");
+        if (this.keys.Enter.isDown) {
+            this.scene.start("title");
         }
     }
 }
