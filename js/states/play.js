@@ -11,6 +11,7 @@ let friesOrderText;
 let scoreText;
 let score;
 let timer;
+let timerText;
 
 export default class Play {
 
@@ -115,7 +116,12 @@ export default class Play {
             fontFamily: "Helvetica"
         })
 
-        scoreText = this.add.text(300, 10, `Score: ${score}`, {
+        timerText = this.add.text(300, 10, `Time: ${Math.floor(timer)}`,{
+            color: "#0c0221",
+            fontFamily: "Helvetica"
+        })
+
+        scoreText = this.add.text(300, 30, `Score: ${score}`, {
             color: "#0c0221",
             fontFamily: "Helvetica"
         })
@@ -173,6 +179,8 @@ export default class Play {
         TomatoText.setText(((this.selectedToppings.get("Tomato") || 0).toString()));
 
         scoreText.setText(`Score: ${score}`)
+
+        timerText.setText(`Time: ${Math.floor(timer) }`)
 
 
         pattyOrderText.setText(this.currentOrder.get("Patty"))
