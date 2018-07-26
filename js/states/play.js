@@ -25,6 +25,7 @@ export default class Play {
         this.load.image("trash", "./img/trash.png")
 
         this.load.audio("bgm", "./audio/bgm.mp3")
+        this.load.audio("score", "./audio/score.mp3")
     }
     init() {
         this.player = undefined;
@@ -39,7 +40,7 @@ export default class Play {
         this.musicPlaying = false;
 
         score = 0;
-        timer = 20;
+        timer = 0.5;
 
         this.genOrder();
     };
@@ -235,7 +236,7 @@ export default class Play {
 
         if (patty && lettuce && tomato) {
             score++;
-            //this.sound.play("")
+            this.sound.play("score")
             this.genOrder();
             this.selectedToppings.clear();
         }
